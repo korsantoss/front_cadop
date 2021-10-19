@@ -15,13 +15,14 @@
       <p>Ocorreu um erro, não conseguimos exibir os resultados!</p>
     </section>
 
+    <!-- feedback caso não encontre resultados -->
     <section class="noResults" v-if="noResults">
       <p>Nenhum resultado encontrado!</p>
     </section>
 
     <!-- sessão que mostrara os resultados encontrados na pesquisa caso não ocorrar erro -->
     <section v-else class="results">
-      <div v-if="loading">Carregando...</div>
+      <div class="loading" v-if="loading">Carregando...</div>
       <!-- uso das diretivas para renderizar os resultados encontrados-->
       <div v-else class="card-result" v-for="(result, index) in results" :key="index"> <!-- card da operadora encontrada na pesquisa -->
         <div><span>Registro ANS: </span>{{result['Registro ANS']}}</div>
@@ -45,6 +46,7 @@
 <script>
 import axios from 'axios';
 export default {
+
   data() {
     return {
       search: '', // search conectado no input de pesquisa
@@ -54,13 +56,16 @@ export default {
       noResults: false // variavel de controle caso o resultado da pesquisa seja 0
     }
   },
+ 
   methods: {
     // metodo ligado ao click do botao "pesquisar"
     async handleSearch(e) {
       e.preventDefault(); // evitar o recarregamento da pagina
       try {
+        this.errored = false;
         this.loading = true;
         this.noResults = false;
+        // this.errored = false;
         const url = `http://localhost:5000/search?q=${this.search}`; // criacao da url de requisicao com o valor digitado pelo usuario
         const response = await axios.get(url); // realizacao da requisicao utilizando o axios
         this.results = response.data; // atribuir resposta ao results
@@ -138,22 +143,28 @@ export default {
     background: #2666dd;
   }
 
+  .loading {
+    text-align: center;
+  }
+
   .errored {
+    text-align: center;
     font-size: 1.1rem;
     color: rgb(231, 36, 36);
-    margin-top: 30px;
+    margin-top: 45px;
   }
 
   .noResults {
+    text-align: center;
     font-size: 1.1rem;
-    margin-top: 30px;
+    margin-top: 45px;
   }
 
   .results {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 45px;
   }
 
   .results .card-result {
