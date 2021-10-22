@@ -1,19 +1,24 @@
-# teste_vue
+## Pesquisa de Operadoras Ativas - CADOP
 
-## Project setup
-```
-yarn install
-```
+A aplicação consumirá uma API responsável por retornar as operadoras ativas no CADOP mediante dado pesquisado, exibindo os resultados para o usuário.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Configurações iniciais
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Iniciar a [API](https://github.com/korsantoss/server_cadop)
+- Instalar as dependências necessárias `yarn install`
+
+
+### Compilar e criar um servidor para uso da aplicação em modo de desenvolvimento
+
+`yarn serve`
+
+
+### Compilar e minimizar aplicação para produção
+
+`yarn build`
+
+
+### :books: Dependências utilizadas
+
+- [Axios](https://yarnpkg.com/package/axios)
